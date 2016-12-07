@@ -50,6 +50,16 @@ window.global_keywords_tables = "";
             saveTabs: localStorageService.get(SQL_SAVE_TABS_KEY) || false,
             uiTheme: ThemeService.themeObject,
             uiThemes: ThemeService.list,
+            delimiters : [
+                {
+                    name: ';; Двойной',
+                    delimiter : ';;'
+                },
+                {
+                    name: '; Одинарный',
+                    delimiter : ';'
+                }
+            ],
             currentTab: {},
             selectedTab: 0,
             sqlLog: localStorageService.get(SQL_LOG_KEY) || [],
@@ -67,6 +77,8 @@ window.global_keywords_tables = "";
             fontSize: localStorageService.get('editorFontSize') || 16,
             theme: localStorageService.get('editorTheme') || 'cobalt'
         };
+
+        $scope.vars.delimiter = $scope.vars.delimiters[0];
         $scope.vars.format = $scope.vars.formats[0];
         $scope.vars.themes = [
             'ambiance',
@@ -122,6 +134,7 @@ window.global_keywords_tables = "";
                         sql: tab.sql,
                         buttonTitle: tab.buttonTitle,
                         format: tab.format,
+                        delimiter:tab.delimiter,
                         results: [],
                         editor: null,
                         selectedResultTab: 0
@@ -542,6 +555,13 @@ window.global_keywords_tables = "";
          * Watch and save settings in LocalStorage
          */
         $scope.$watch('vars.limitRows', (curr) => localStorageService.set('editorLimitRows', curr));
+
+
+        /**
+         * Watch and save settings in LocalStorage
+         */
+
+        $scope.$watch('vars.delimiter', (curr) => localStorageService.set('delimiter', curr));
 
         /**
          * Watch and save settings in LocalStorage
