@@ -313,11 +313,12 @@ window.global_keywords_tables = "";
             // Save tabs session
             saveSession();
 
+            var use_delimiter=$scope.vars.delimiter.delimiter;
             // Split SQL into subqueries
             editor
                 .session
                 .$mode
-                .splitByTokens(sql, 'constant.character.escape', ';;')
+                .splitByTokens(sql, 'constant.character.escape', use_delimiter)
                 .forEach((item) => {
 
                     const subSql = item.sql;
