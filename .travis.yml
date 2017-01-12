@@ -10,3 +10,8 @@ script:
     - gulp build
 #    - gulp docs - error docs build now
     - tree -D
+
+addons:
+  apt:
+    packages:
+        - tree
