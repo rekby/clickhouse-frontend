@@ -9,13 +9,14 @@ before_script:
 script:
     - gulp build
 #    - gulp docs - error docs build now
-    - tree -D
+#    - tree -D
     - tar -zcvf clickhouse-frontend.tar.gz -C .. /clickhouse-frontend --exclude=clickhouse-frontend/clickhouse-frontend.tar.gz
 
-addons:
-  apt:
-    packages:
-        - tree
+# for travis state view, debug deploy
+#addons:
+#  apt:
+#    packages:
+#        - tree
 
 deploy:
   skip_cleanup: true
