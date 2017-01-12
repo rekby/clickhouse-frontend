@@ -10,7 +10,10 @@ script:
     - gulp build
 #    - gulp docs - error docs build now
 #    - tree -D
-    - tar -zcf ../clickhouse-frontend.tar.gz -C .. clickhouse-frontend
+
+before_deploy:
+    - mv docs clickhouse-frontend
+    - tar -zcf clickhouse-frontend.tar.gz clickhouse-frontend
 
 # for travis state view, debug deploy
 #addons:
@@ -26,4 +29,4 @@ deploy:
     tags: true
   api_key: $GITHUB_TOKEN
   file:
-    - "../clickhouse-frontend.tar.gz"
+    - "clickhouse-frontend.tar.gz"
