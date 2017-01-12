@@ -1,5 +1,5 @@
 language: node_js
-node_js: 6
+node_js: "6.7.0"
 before_script:
   - npm install -g gulp
   - npm install -g bower 
@@ -10,8 +10,19 @@ script:
     - gulp build
 #    - gulp docs - error docs build now
     - tree -D
+    - tar -zcvf clickhouse-frontend.tar.gz -C .. /clickhouse-frontend --exclude=clickhouse-frontend/clickhouse-frontend.tar.gz
 
 addons:
   apt:
     packages:
         - tree
+
+deploy:
+  skip_cleanup: true
+  tags: true
+  provider: releases
+  on:
+    tags: true
+  api_key: $GITHUB_TOKEN
+  file:
+    - "clickhouse-frontend.tar.gz"
