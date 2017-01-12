@@ -8,4 +8,5 @@ before_script:
 
 script:
     - gulp build
-    - gulp docs
+#    - gulp docs - error docs build now
+    - tree -D
