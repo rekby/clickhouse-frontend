@@ -10,7 +10,7 @@ script:
     - gulp build
 #    - gulp docs - error docs build now
 #    - tree -D
-    - tar -zcvf clickhouse-frontend.tar.gz -C .. /clickhouse-frontend --exclude=clickhouse-frontend/clickhouse-frontend.tar.gz
+    - tar -zcvf clickhouse-frontend.tar.gz -C .. clickhouse-frontend --exclude=clickhouse-frontend/clickhouse-frontend.tar.gz
 
 # for travis state view, debug deploy
 #addons:
